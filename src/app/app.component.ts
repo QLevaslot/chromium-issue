@@ -26,11 +26,13 @@ export class AppComponent {
 
     const formData = new FormData();
     formData.append('attachment', this.file);
-    formData.append('data', new Blob([
-        JSON.stringify({
-          date: new Date().toISOString()
-        })
-    ]));
+    formData.append('data',
+        new Blob([
+          JSON.stringify({
+            date: new Date().toISOString()
+          })
+        ], { type: 'application/json' }),
+    );
 
     this.http.post("/api/dummy", formData).subscribe();
   }
